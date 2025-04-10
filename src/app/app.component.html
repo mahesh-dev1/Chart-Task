@@ -1,55 +1,30 @@
-<div class="container">
+<div class="container mt-4">
+  <!-- <div class="card border-success mb-3" style="max-width: 30rem;min-height:20rem;">
+    <div class="card-header text-center text-white bg-success"><b>Pie Chart Generator</b></div>
+    <div class="card-body"> -->
+      <!-- <app-chart-form 
+     (formDataChange)="onFormDataChange($event)"
+     (chartVisibilityChange)="showChart = $event">
+     </app-chart-form> -->
+    <!-- </div>
+  </div> -->
 
-  <div class="card border-success mb-3" style="max-width: 30rem;min-height:20rem;">
-    <div class="card-header border-success headerbg txtwhite text-center"><b>Pie Chart Generator</b></div>
-
-    <div class="card-body">
-      <form [formGroup]="myform">
-        <div formArrayName="data">
-          <div  *ngFor="let group of dataArray.controls; let i = index" [formGroupName]="i">
-      <div class="row" >
-        <div class="col-5 pr0">
-          <label class="form-label">Name</label>
-          <input type="text" formControlName="name" placeholder="Name" class="form-control"
-          (keypress)="allowOnlyAlphabets($event)" (input)="onInputChange($event)">
-
-          <div *ngIf="group.get('name')?.invalid && group.get('name')?.touched" class="fs8 text-danger">
-            Name is required
-          </div>
-
-        </div>
-        <div class="col-5 pr0">
-          <label class="form-label">Value</label>
-          <input type="number" formControlName="value" placeholder="Value" class="form-control"
-          (keypress)="preventNegative($event)" pattern="[0-9]*" (keydown)="preventArrowKeys($event)"
-          (input)="onInputChange($event)">
-
-          <div *ngIf="group.get('value')?.invalid && group.get('value')?.touched" class="fs8 text-danger">
-            Value is required
-          </div>
-
-        </div>
-        <div class="col-2 trash p-0 maxh">
-          <button class="btn btn-danger" type="button" (click)="removeRow(i)">
-            <i class="fa fa-trash"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    </div>
-    </form>
-    </div>
-
-    <div class="card-footer bg-transparent ">
-      <div class="center">
-      <button type="button" class="btn btn-primary mr" (click)="addRow()">Add Data</button>
-      <button type="button" class="btn btn-success" (click)="generateChart()">Generate Chart</button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-  <div *ngIf="charShow" id="chartContainer" style="width: 600px; height: 300px;"></div>
-  </div>
-
+ <!--  <div *ngIf="showChart">
+    <app-chart 
+    [chartData]="chartData"
+    ></app-chart>
+  </div> -->
 </div>
+
+
+<app-chart-form 
+(formDataChange)="onFormDataChange($event)"
+(chartVisibilityChange)="showChart = $event">
+</app-chart-form>
+
+<div *ngIf="showChart">
+  <app-chart 
+  [chartData]="chartData"
+  ></app-chart>
+</div>
+
